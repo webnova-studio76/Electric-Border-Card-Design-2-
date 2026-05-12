@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Border Animation</title>
+    <style>
+        /* Base Styles from 1000207159.mp4 */
+        :root {
+            --bg-dark: #050505;
+            --card-inner: #1a1a1a;
+            --electric-cyan: #00fffc;
+            --electric-blue: #0066ff;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif; /* Matches video font */
+        }
+
+        /* The Outer Container */
+        .card {
+            position: relative;
+            width: 320px;
+            height: 500px; /* Minimal Change: Increased height slightly (from 450px) to accommodate logo */
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Essential to clip the rotating beam */
+            border-radius: 20px;
+        }
+
+        /* The Rotating "Electric" Beam */
+        .card::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 140%;
+            background: linear-gradient(var(--electric-cyan), var(--electric-blue));
+            animation: rotate 4s linear infinite; /* Creates the movement seen in the video */
+        }
+
+        /* Optional: Adding a second beam for a fuller border effect */
+        .card::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 140%;
+            background: linear-gradient(var(--electric-cyan), var(--electric-blue));
+            animation: rotate 4s linear infinite;
+            animation-delay: -2s; /* Offsets the second beam by 180 degrees */
+        }
+
+        /* The Inner Content Area */
+        .content {
+            position: absolute;
+            inset: 4px; /* The gap creates the border thickness */
+            background: var(--card-inner);
+            border-radius: 16px;
+            z-index: 1; /* Sits above the rotating beams */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        /* ——— Addition 1: New styling for the logo ——— */
+        .card-logo {
+            width: 80px;  /* Set preferred logo size */
+            height: 80px;
+            margin-bottom: 20px; /* Space between logo and headline */
+            border-radius: 50%; /* Optional: Makes the logo circular */
+            object-fit: cover; /* Ensures image isn't distorted */
+            
+            /* Integrated effect: gives the logo the same electric glow */
+            filter: drop-shadow(0 0 10px var(--electric-cyan)); 
+            
+            border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle logo border */
+        }
+        /* ——— End Addition 1 ——— */
+
+        .content h3 {
+            font-size: 1.8rem;
+            margin-top: 0; /* Minimal Change: Removed top margin to tighten layout with logo */
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .content p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.75); /* Matches .front .inner p color */
+        }
+
+        /* The "Underline" decoration from the video */
+        .content::after {
+            content: '';
+            width: 4rem;
+            height: 2px;
+            background: #6ED4DF; /* Matches the video underline color */
+            position: absolute;
+            bottom: 4rem;
+        }
+
+        /* Rotation Animation */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="content">
+            <!-- ——— Addition 2: Insert the <img> tag at the top of content ——— -->
+            <img src="file_00000000680471faa584c42eae0b8d42.png" alt="Logo" class="card-logo">
+            <!-- ——— End Addition 2 ——— -->
+
+            <h3>Electric Border</h3>
+            <p>In case you'd like to emphasize something very dramatically.</p>
+        </div>
+    </div>
+
+</body>
+</html>
